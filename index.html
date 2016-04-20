@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product Listing Exercise</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	    <link rel="stylesheet" href="css/products.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="js/angular.min.js" type="text/javascript"></script>
+        <script src="js/script.js" type="text/javascript"></script>
+
+    </head>
+    <body ng-app="productListApp">
+        <h2>Product List Controller Exercise</h2>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+				//The action for the "clear products" button
+				$('#clearProductsExtButton').click(function(){
+					var app = document.getElementById('ProductCtrl');
+					var scope = angular.element(app).scope();
+					scope.$apply(function() {
+						scope.clearProducts();
+					});     
+				});
+                
+            });
+        </script>
+    
+        <button id="clearProductsExtButton">Clear Product List</button>
+        <br><br>
+        <div id="ProductCtrl" ng-controller="ProductCtrl" >
+            <button ng-click="getProducts()">Get Product List</button>
+            <h3>Total Product Number: {{getTotalProdCount()}}</h3>
+            <h3>Time Data Loaded: {{getOtherValue()}}</h3>
+			<ul>
+				<span ng-repeat="product in  productList">
+					<span class="prodId"><h3>{{product.title}}</h3></span> 
+								
+					<button type="button" ng-click="getProductsID(product.id)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">More Product Details</button>
+					<br><br>
+				<span>	
+					
+
+  <!-- Trigger the modal with a button -->
+  
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" width="800" height="800">
+    <div class="modal-dialog modal-lg" width="800" height="800">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title primary"><h1>More Product Details</h1>
+           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        <div class="modal-body">
+         <span ng-repeat="product in  productListMoreDetails">
+					<h3>Title:{{product.title}}</h3>
+					<br>
+					<h3><span class="label">Type:</span>{{product.type}}</h3>
+					<br>
+					<h3>Price:${{product.price}}</h3>
+					<br>
+					<a href="{{product.href}}"><img src="{{product.image}}" border="0"></a>
+					<br><br>
+					</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </li>
+
+
+					<!--<span>| {{product.prodName}} | {{product.prodDesc}}</span>-->
+			</li>		 
+
+			</ul>
+
+			 <ul>
+
+     
+    <div ui-view="" ></div>
+    
+    <script src="script.js"></script>
+
+    </body>
+    
+</html>
